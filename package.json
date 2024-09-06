@@ -8,5 +8,8 @@
     "@zk-email/circuits": "^6.1.5",
     "@zk-email/contracts": "^6.1.5",
     "@zk-email/helpers": "^6.1.5"
+  },
+  "scripts": {
+    "compile": "circom -l ./node_modules/ circom/circuit.circom -o --r1cs --wasm --sym --O0"
   }
 }
