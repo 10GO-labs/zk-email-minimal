@@ -1,7 +1,7 @@
 import { Uint8ArrayToCharArray } from "@zk-email/helpers";
 import { generateEmailVerifierInputs } from "@zk-email/helpers/dist/input-generators";
 
-export const STRING_PRESELECTOR = "N=FAmero de cuenta: ";
+export const STRING_PRESELECTOR = "N=FAmero de cuenta:";
 export type IExampleCircuitInputs = {
   emailHeader: string[];
   emailHeaderLength: string;
@@ -11,7 +11,8 @@ export type IExampleCircuitInputs = {
   emailBodyLength?: string | undefined;
   precomputedSHA?: string[] | undefined;
   bodyHashIndex?: string | undefined;
-    decodedEmailBodyIn?: string[] | undefined;
+  decodedEmailBodyIn?: string[] | undefined;
+  userRegexIdx?: string | undefined;
 };
 
 export async function generateExampleVerifierCircuitInputs(
@@ -23,8 +24,14 @@ export async function generateExampleVerifierCircuitInputs(
     removeSoftLineBreaks: true,
   });
 
+  const bodyRemaining = emailVerifierInputs.decodedEmailBodyIn!.map((c) => Number(c)); // Char array to Uint8Array
+  const selectorBuffer = Buffer.from(STRING_PRESELECTOR);
+  const userRegexIdx =
+    Buffer.from(bodyRemaining).indexOf(selectorBuffer) + selectorBuffer.length + 10;
+
   return {
     ...emailVerifierInputs,
+    userRegexIdx: userRegexIdx.toString(),
   };
 }
 
