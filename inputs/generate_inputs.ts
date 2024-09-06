@@ -21,6 +21,7 @@ export async function generateExampleVerifierCircuitInputs(
   const emailVerifierInputs = await generateEmailVerifierInputs(email, {
     shaPrecomputeSelector: STRING_PRESELECTOR,
     maxBodyLength: 7040,
+    maxHeadersLength: 512,
     removeSoftLineBreaks: true,
   });
 
