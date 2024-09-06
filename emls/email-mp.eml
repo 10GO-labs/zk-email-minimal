@@ -1,0 +1,327 @@
+Delivered-To: pajarinoyago@gmail.com
+Received: by 2002:a05:7010:6054:b0:3eb:4675:be3b with SMTP id s20csp2742556mde;
+        Tue, 3 Sep 2024 14:01:46 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHveo8K/UWSy/PLbpxPE+r1cenNBHr3gP84x+P+RoJ+HGx9hgKwAvZ72Uf5U73CTlzx0fyd
+X-Received: by 2002:a05:620a:462c:b0:79e:ff0a:87a0 with SMTP id af79cd13be357-7a811f0973emr2902703285a.11.1725397306157;
+        Tue, 03 Sep 2024 14:01:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1725397306; cv=none;
+        d=google.com; s=arc-20160816;
+        b=o/YrXLVZKcYIeEtCDh0FwrRoc0RATl0h+Na1EdQBekkyYJrVf07GOQtcHVgsn3+kzI
+         ZXy8hAEDTtbBvJCq5rUD8WijHagLVOpOB7WUrVXNU+sxDuSshmmvDLdxWp9Pgk/ckeMg
+         MRXLBiq0iWvAN5K7FR9UKQjGGKuLF+1whQjQeOe/rtKvckidRdt5qhzDAGFv0Sl2egAj
+         r5Q5M8h4TSmP59/cFnQyc7NHJg4BxAP4kjC/7fP8YhVVlSKvu4NEfQyL1AcyO1Jg5J93
+         Fd+sa0aSTqJXEQIQkjW9xwUWuGz9ZrhXdb3bbaoq5xleupvfpWbsx5cWLfH4Lwv7slu4
+         FHnw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:mime-version:from:date
+         :content-transfer-encoding:dkim-signature:dkim-signature;
+        bh=P82daZRWF+wGOnHMorSV/fidhIwRCauASa0dHizywfg=;
+        fh=0uh6IgSgP2Rv+BZDjqu3LwTyGbAYBkW8y07bVG9d8pk=;
+        b=MtS5uHWM5wCDmZ5z0UbEjTAOdDnU+ExD84E9NZb1XZkcGGCHaMcchezU+s2ARvAiQt
+         yMjB66A9PszVGAfH1i1Gdw8pAWtLVx51zCDCQ0iNt0p8eRInRSezQJSaHi1AvQlkaGSI
+         6eGEJ1VieJyRegll6Vm78Rf7XTcnOfa+9zC2BcpbFAyYvDrpkk3yuCWvJjECVLLuUIL7
+         jxj0GP7BbpXqwxR7gfvnSHjJfs+EYSeXyuruYU/K1X1NB6oaKiGVobIem+EpInDthZnQ
+         5XmGVtBZ4MzYnmC5Uh7pGJd036DFlFZyYd9nqb+2kgVQ+CRL0U4/qzfGnP83N/Jr2c0R
+         wV/g==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@mercadopago.com header.s=s1 header.b=dweGTR8J;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=b595ISaa;
+       spf=pass (google.com: domain of bounces+9647731-315d-pajarinoyago=gmail.com@em4788.mercadopago.com designates 149.72.129.250 as permitted sender) smtp.mailfrom="bounces+9647731-315d-pajarinoyago=gmail.com@em4788.mercadopago.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=mercadopago.com
+Return-Path: <bounces+9647731-315d-pajarinoyago=gmail.com@em4788.mercadopago.com>
+Received: from o11.ptr1968.sg.mercadolibre.com (o11.ptr1968.sg.mercadolibre.com. [149.72.129.250])
+        by mx.google.com with ESMTPS id af79cd13be357-7a806d8575bsi1366819885a.482.2024.09.03.14.01.45
+        for <pajarinoyago@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Sep 2024 14:01:46 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+9647731-315d-pajarinoyago=gmail.com@em4788.mercadopago.com designates 149.72.129.250 as permitted sender) client-ip=149.72.129.250;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@mercadopago.com header.s=s1 header.b=dweGTR8J;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=b595ISaa;
+       spf=pass (google.com: domain of bounces+9647731-315d-pajarinoyago=gmail.com@em4788.mercadopago.com designates 149.72.129.250 as permitted sender) smtp.mailfrom="bounces+9647731-315d-pajarinoyago=gmail.com@em4788.mercadopago.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=mercadopago.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mercadopago.com;
+	h=content-transfer-encoding:content-type:from:mime-version:subject:
+	x-feedback-id:to:cc:content-type:from:subject:to;
+	s=s1; bh=P82daZRWF+wGOnHMorSV/fidhIwRCauASa0dHizywfg=;
+	b=dweGTR8JB+oiBl+VrT0HR/8qV+zeWIqb8bmo+sEuV+LU0hCKM9WmYR+o2OOxFh8hdvl0
+	fkqg8hgePqMUzTMAUC6aJsgJ5DAv07F/GwDxS8TMWXUmsngvgtAjVia7BM1js6tUZc4ut1
+	3IDjTKAfvx0BG2AYkBabTlrtb3liLZ/N+e/Gnm+SLDeTE92Vr7mHos5OejykBSygNo4eXa
+	kKdvbeA60tZHr7nHprC706B8htCv7LoJns/W/Z5gK3uMgF1RlQmMimecpPd2jldfKqZL/q
+	wn26lB64mOCXE2fx2dpg1shZ2q2HxcXKWmFnuNNFFbO/J4ejFVS+CZYSpoOkiRVg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-transfer-encoding:content-type:from:mime-version:subject:
+	x-feedback-id:to:cc:content-type:from:subject:to;
+	s=smtpapi; bh=P82daZRWF+wGOnHMorSV/fidhIwRCauASa0dHizywfg=;
+	b=b595ISaaPPf+tyzVxLYjyrBMTaUCGkPRYJlcMhNFqrlQSco8sRKgV4bgtMQVnx1JGcjj
+	iAr55XmR2Ic5lQ7Phb8geBUthq4j1WJoPXTCGae1RLRomPxqGAQybd2+PY0JG5Wq0PLsa0
+	LI5AoGCJf7pMHosN/F64UEVKznvWGXbJk=
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=iso-8859-1
+Date: Tue, 03 Sep 2024 21:01:44 +0000 (UTC)
+From: Mercado Pago <info@mercadopago.com>
+Mime-Version: 1.0
+Message-ID: <vUI7r7cZS2-thlVWJFVrYQ@geopod-ismtpd-canary-0>
+Subject: Tu transferencia fue enviada
+X-Feedback-ID: 9647731:SG
+X-SG-EID: 
+ =?us-ascii?Q?u001=2E5zG4qDUf=2FaCQGw2lPfoo8xIk6emc4alHzOc5SBTFNBZcXP3uxThZo5vrZ?=
+ =?us-ascii?Q?Ai7iS=2Fc4OekQVw7QW9tF3pgXZkxuZIjgDjmhp9z?=
+ =?us-ascii?Q?3PB0SW1xjOTC024dL7WsJDczOUMHfq7wpkTHYNj?=
+ =?us-ascii?Q?giHx6rC7iqp1UG5Vc0+Eq3=2F=2FBRfrWUvHIoeO9My?=
+ =?us-ascii?Q?gHVFkc469C=2F5soEK=2FRUhdAgX6FYs0jgK3FuY8Yf?=
+ =?us-ascii?Q?922xVATydfkf6DmC95H5YFRRYZE1qva1n31GQ94?=
+ =?us-ascii?Q?=2FXh=2F?=
+X-SG-ID: 
+ =?us-ascii?Q?u001=2ESdBcvi+Evd=2FbQef8eZF3BsIXWFDGzzyJ7jdD7n5MEtsts1w1lGmY427tQ?=
+ =?us-ascii?Q?mm1gyNPB+btarCwKYMKnoJtDBnAXu4XZYpFchX=2F?=
+ =?us-ascii?Q?qsXBOz4VyH6RGC6tmtOxtf9VUIq+HoZEhef0AAJ?=
+ =?us-ascii?Q?lyJq0UGFV3b+L0Yj95BeOEB+lj0YfjHkV+80Btr?=
+ =?us-ascii?Q?3kyz+8Z6TNmCCWjlXOTcesOTJXprabehszj7cr6?=
+ =?us-ascii?Q?8pwJGFMPK2J=2FAEoMsPe46ilIZFtfJ3x6jeZqNoX?=
+ =?us-ascii?Q?U5dttxbkhz0Q9V=2FWqiRhfwlavAZ6JY5PnyWyngZ?=
+ =?us-ascii?Q?AL8S49KGQ9Bw+QrJ0tcYJjcM29CCuK2sxuRuSNz?=
+ =?us-ascii?Q?MzIeAaa1U=2FEw2vN6cALjxGLr8lXEwOIm6xX+AdV?=
+ =?us-ascii?Q?K3DIbTf2Sit7k2syhA4mZ1WWHaxuYly9iYNCqw=2F?=
+ =?us-ascii?Q?vdiC94x4y3FmFUQ1bhi0zw2MAA+nE=2FSUVL3kH=2Fi?=
+ =?us-ascii?Q?vi8NOqR9xI3S8V03Bsyz7abw8juCVwcBuz0GwnB?=
+ =?us-ascii?Q?fxN5MPZ+Hojzk0kp9IGWrGuiykdIGARrX3P84td?=
+ =?us-ascii?Q?yE0lmeESpAEFwj+4T4niQDlZpFwkcs=3D?=
+To: pajarinoyago@gmail.com
+X-Entity-ID: u001.vKFg7gojbb5Tr0Er+wG0xA==
+
+<html lang=3D"es" xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:sch=
+emas-microsoft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office"=
+><head><link type=3D"text/css" rel=3D"stylesheet" id=3D"dark-mode-custom-li=
+nk"><link type=3D"text/css" rel=3D"stylesheet" id=3D"dark-mode-general-link=
+"><style lang=3D"en" type=3D"text/css" id=3D"dark-mode-custom-style"></styl=
+e><style lang=3D"en" type=3D"text/css" id=3D"dark-mode-native-style"></styl=
+e><meta charset=3D"UTF-8"><meta name=3D"viewport" content=3D"width=3Ddevice=
+-width"><meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge"><meta na=
+me=3D"x-apple-disable-message-reformatting"><title></title><style> body, ht=
+ml { margin: 0 auto !important; padding: 0 !important; height: 100% !import=
+ant; width: 100% !important; } * { -ms-text-size-adjust: 100%; -webkit-text=
+-size-adjust: 100% } div[style*=3D"margin: 16px 0"] { margin: 0 !important =
+} table, td { mso-table-lspace: 0 !important; mso-table-rspace: 0 !importan=
+t; border-collapse: collapse !important } table { border-spacing: 0 !import=
+ant; border-collapse: collapse !important; table-layout: fixed !important;}=
+ table table table { table-layout: auto !important } img { -ms-interpolatio=
+n-mode: bicubic } .aBn, .x-gmail-data-detectors, .x-gmail-data-detectors *,=
+ [x-apple-data-detectors] { border-bottom: 0 !important; cursor: default !i=
+mportant; color: inherit !important; text-decoration: none !important; font=
+-size: inherit !important; font-family: inherit !important; font-weight: in=
+herit !important; line-height: inherit !important } .a6S { display: none !i=
+mportant; opacity: .01 !important } img.g-img+div { display: none !importan=
+t } .button-link { text-decoration: none !important } @media only screen an=
+d (min-device-width:320px) and (max-device-width:374px) { .email-container =
+{ min-width: 320px !important } } @media only screen and (min-device-width:=
+375px) and (max-device-width:413px) { .email-container { min-width: 375px !=
+important } } @media only screen and (min-device-width:414px) { .email-cont=
+ainer { min-width: 414px !important } } @media screen and (min-device-width=
+: 480px) { td[class=3D"show"] { display: block !important; max-height: none=
+ !important; mso-hide: none !important; } .card-content { border-collapse: =
+separate !important; border-width: 1px !important; border-style: solid !imp=
+ortant; border-color: #e5e5e5 !important; border-bottom-color: #bfbfbf !imp=
+ortant; border-bottom-width: 2px !important; border-radius: 4px !important;=
+ -moz-border-radius: 4px !important; -webkit-border-radius: 4px !important;=
+ } } </style><style>     @media screen and (max-width:480px) {       .heade=
+r-content {         padding: 8px 12px !important;       }       .header-soc=
+ial {         padding: 6px 12px !important;       }       .logo-ml {       =
+  content: url('https://www.mercadolibre.com/org-img/mkt/email-mkt-assets/d=
+avinci/2x/isologoml.png') !important;         height: 32px !important;     =
+    width: auto !important;       }       .logo-mp {         content: url('=
+https://www.mercadopago.com/org-img/insiteDesarrollo/assets/img/isologomp.p=
+ng') !important;         height: 32px !important;         width: auto !impo=
+rtant;       }       .logo-ms {         content: url('https://www.mercadoli=
+bre.com/org-img/mkt/email-mkt-assets/davinci/2x/isologoms.png') !important;=
+         height: 32px !important;         width: auto !important;       }  =
+     .logo-tucarro {         content: url('https://www.mercadolibre.com/org=
+-img/mkt/email-mkt-assets/davinci/2x/isologotucarro.png') !important;      =
+   height: 22px !important;         width: auto !important;       }       .=
+logo-publi {         content: url('https://www.mercadolibre.com/org-img/mkt=
+/email-mkt-assets/davinci/2x/logo-mobile-publi@2x.png') !important;        =
+ height: 24px !important;         width: auto !important;       }       .lo=
+go-publi-mlb {         content: url('https://www.mercadolibre.com/org-img/m=
+kt/email-mkt-assets/davinci/2x/logo-mobile-mlb-publi@2x.png') !important;  =
+       height: 24px !important;         width: auto !important;       }    =
+   .header-content-compra-garantida-text {         display: none !important=
+;       }       .button,       .button-container,       .item-button,      =
+ .item-button-container,       .card-button,       .card-button-container {=
+         width: 100% !important;         text-align: center !important;    =
+     margin: 0 auto !important       }       .fluid,       .hero-image-td-i=
+mg {         width: 100% !important;         max-width: 100% !important;   =
+      height: auto !important;         margin-left: auto !important;       =
+  margin-right: auto !important       }       .stack-column,       .stack-c=
+olumn-center {         display: block !important;         width: 100% !impo=
+rtant;         max-width: 100% !important;         direction: ltr !importan=
+t       }       .card-info,       .categories-body {         height: auto !=
+important;       }     }   </style></head><body width=3D"100%" style=3D"mar=
+gin: 0; padding: 0; mso-line-height-rule: exactly;"><div style=3D"display:n=
+one !important; mso-hide:all;"><span></span></div><div style=3D"width: 100%=
+; margin: auto;" class=3D"email-container"><table role=3D"presentation" cel=
+lspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"center" width=3D"100=
+%" class=3D"email-container" style=3D"width: 100%; background: #f5f5f5"><tb=
+ody><tr><td id=3D"templateContent" style=3D"padding: 0px; font-size: 0px;">=
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%"><tbo=
+dy><tr><td align=3D"center"><table class=3D"header" cellspacing=3D"0" cellp=
+adding=3D"0" width=3D"100%"><tbody><tr><td align=3D"center"><table cellspac=
+ing=3D"0" cellpadding=3D"0" width=3D"100%" align=3D"center" style=3D"backgr=
+ound: rgb(255, 255, 255); font-family: Arial, sans-serif; height: 55px; max=
+-width: 600px;"><tbody><tr><td class=3D"header-content" align=3D"left" vali=
+gn=3D"middle" style=3D"padding: 8px 24px;"><a class=3D"logo-mp" target=3D"_=
+blank" href=3D"http://www.mercadopago.com.ar/" title=3D"Mercado Pago"><img =
+border=3D"0" src=3D"https://mercadolibre.com/org-img/mkt/email-mkt-assets/d=
+avinci/2x/ic_logomp@2x.png" width=3D"112" height=3D"29" alt=3D"Mercado Pago=
+" style=3D"display: block; max-height: 100%; width: auto; border: 0px;"></a=
+></td><td class=3D"header-content" align=3D"right" style=3D"color: rgb(102,=
+ 102, 102); padding: 8px 24px; font-size: 12px; font-family: &quot;Proxima =
+Nova&quot;, _apple_system, &quot;Helvetica Neue&quot;, Helvetica, Roboto, A=
+rial, sans-serif; font-weight: 400;"></td></tr></tbody></table></td></tr></=
+tbody></table></td></tr></tbody></table><table border=3D"0" cellspacing=3D"=
+0" cellpadding=3D"0" width=3D"100%"><tbody><tr><td align=3D"center"><table =
+cellspacing=3D"0" cellpadding=3D"0" border=3D"0" width=3D"100%"><tbody><tr>=
+<td height=3D"100%" width=3D"100%" align=3D"center" style=3D"border: 0px; f=
+ont-size: 0px; font-weight: 300; margin: 0px; padding: 0px; vertical-align:=
+ top; text-align: center;"><table role=3D"presentation" cellspacing=3D"0" c=
+ellpadding=3D"0" width=3D"100%" align=3D"center" style=3D"width: 100%; max-=
+width: 600px;"><tbody><tr><td height=3D"100%" width=3D"100%" style=3D"borde=
+r: 0px; font-size: 0px; font-weight: 300; margin: 0px; padding: 0px; vertic=
+al-align: top; text-align: center;"><table role=3D"presentation" border=3D"=
+0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"background: =
+rgb(0, 158, 227);"><tbody><tr><td align=3D"center" valign=3D"middle" style=
+=3D"border: 0px; font-size: 0px; font-weight: 300; margin: 0px; padding: 0p=
+x; vertical-align: top; text-align: center;"><table border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" width=3D"100%"><tbody><tr><td align=3D"center" va=
+lign=3D"middle" style=3D"border: 0px; font-size: 0px; font-weight: 300; mar=
+gin: 0px; padding: 0px; vertical-align: top; text-align: center;"><table ro=
+le=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" align=3D"center" style=3D"width: 100%; max-width: 482px; margin: =
+0px auto;"><tbody><tr><td align=3D"center" valign=3D"middle" style=3D"margi=
+n: 0px; padding: 48px 20px;"><span style=3D"color: rgb(255, 255, 255); font=
+-family: &quot;Proxima Nova&quot;, _apple_system, &quot;Helvetica Neue&quot=
+;, Helvetica, Roboto, Arial, sans-serif; font-size: 26px; font-weight: 600;=
+ line-height: 1.21;">Ya enviamos tu transferencia de $ 1.000.</span></td></=
+tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></td=
+></tr></tbody></table></td></tr><tr><td dir=3D"ltr" height=3D"100%" width=
+=3D"100%" align=3D"center" style=3D"border: 0px; font-size: 0px; font-weigh=
+t: 300; margin: 0px; padding: 0px; vertical-align: top; text-align: center;=
+"><table align=3D"center" role=3D"presentation" cellpadding=3D"0" cellspaci=
+ng=3D"0" width=3D"100%" style=3D"width: 100%; max-width: 600px;"><tbody><tr=
+><td class=3D"show" height=3D"46" align=3D"left" style=3D"background: rgb(0=
+, 158, 227); display: none; max-height: 0px; overflow: hidden;"></td><td ro=
+wspan=3D"2" width=3D"442" style=3D"background: url(&quot;https://mercadolib=
+re.com/org-img/mkt/email-mkt-assets/davinci/2x/1x46-009ee3.png&quot;) left =
+top repeat-x;"><table cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" al=
+ign=3D"center" style=3D"max-width: 600px;"><tbody><tr><td dir=3D"ltr" heigh=
+t=3D"100%" width=3D"100%" align=3D"center" style=3D"vertical-align: top; te=
+xt-align: center; padding: 0px; font-size: 0px;"><table class=3D"card-conte=
+nt" role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%=
+" align=3D"center" style=3D"width: 100%; background: rgb(255, 255, 255); ma=
+x-width: 560px; overflow: hidden; margin: 0px auto;"><tbody><tr><td style=
+=3D"font-size: 0px; padding: 30px 30px; text-align: center;"><table role=3D=
+"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" align=3D"=
+center" style=3D"padding: 0px; font-size: 0px;"><tbody><tr><td valign=3D"mi=
+ddle" align=3D"center" style=3D"padding: 20px 0px 0px; font-size: 0px;"><h3=
+ style=3D"font-family: 'Proxima Nova', _apple_system, 'Helvetica Neue', Hel=
+vetica, Roboto, Arial, sans-serif; font-size: 16px; color: rgb(51, 51, 51);=
+ font-weight: 400; line-height: 1; margin: 0px;"> <b>Datos del beneficiario=
+</b></h3></td></tr><tr><td valign=3D"middle" align=3D"center" style=3D"padd=
+ing: 20px 0px 0px; font-size: 0px;"><h1 style=3D"font-family: 'Proxima Nova=
+', _apple_system, 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; f=
+ont-size: 16px; color: rgb(51, 51, 51); font-weight: 400; line-height: 1; m=
+argin: 0px;"> Nombre y apellido:                                           =
+                                                       <strong>Pajarino Yag=
+o</strong><p></p> Entidad:                                                 =
+                                                 <strong>BBVA Banco Frances=
+</strong><p></p> N=FAmero de cuenta:                                       =
+                                                           <strong>01703410=
+40000031187538</strong></h1></td></tr></tbody></table></td></tr></tbody></t=
+able></td></tr></tbody></table></td><td class=3D"show" height=3D"46" align=
+=3D"right" style=3D"background: rgb(0, 158, 227); display: none; max-height=
+: 0px; overflow: hidden;"></td></tr><tr><td class=3D"show" height=3D"100%" =
+align=3D"left" style=3D"background: rgb(245, 245, 245); display: none; max-=
+height: 0px; overflow: hidden;"></td><td class=3D"show" height=3D"100%" ali=
+gn=3D"right" style=3D"background: rgb(245, 245, 245); display: none; max-he=
+ight: 0px; overflow: hidden;"></td></tr></tbody></table></td></tr></tbody><=
+/table></td></tr></tbody></table><table border=3D"0" cellspacing=3D"0" cell=
+padding=3D"0" width=3D"100%"><tbody><tr><td align=3D"center"><table role=3D=
+"presentation" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%"><tbody><t=
+r><td align=3D"center"><table role=3D"presentation" cellspacing=3D"0" cellp=
+adding=3D"0" width=3D"100%" style=3D"background: rgb(245, 245, 245);"><tbod=
+y><tr><td align=3D"center" style=3D"padding: 18px 40px 25px;"><table role=
+=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" align=
+=3D"center" style=3D"max-width: 600px;"><tbody><tr><td align=3D"center" sty=
+le=3D"color: rgb(140, 140, 140); text-align: center; font-family: &quot;Pro=
+xima Nova&quot;, _apple_system, &quot;Helvetica Neue&quot;, Helvetica, Robo=
+to, Arial, sans-serif; font-size: 12px; font-weight: 400; line-height: 1.29=
+; padding: 10px 0px 23px;">Si no hiciste esta transferencia, <a href=3D"htt=
+ps://www.mercadopago.com.ar/accountrecovery/feedback/unrecognized?notificat=
+ionId=3De12afa17-b3b8-409b-80af-b15de01828a6&source=3DEMAIL" style=3D"color=
+:rgb(0,158,227);">av=EDsanos para tomar medidas de seguridad sobre tu cuent=
+a.</a></td></tr><tr><td align=3D"center"><table cellspacing=3D"0" cellpaddi=
+ng=3D"0" align=3D"center"><tbody><tr><td style=3D"padding: 0px 2px;"><a tar=
+get=3D"_blank" href=3D"https://play.google.com/store/apps/details?id=3Dcom.=
+mercadopago.wallet" title=3D"Google Play" style=3D"display: block;"><img bo=
+rder=3D"0" src=3D"https://mercadolibre.com/org-img/mkt/email-mkt-assets/dav=
+inci/2x/ic_android-gray@2x.png" alt=3D"Google Play" width=3D"16" height=3D"=
+20" style=3D"display: block;"></a></td><td style=3D"padding: 0px 2px;"><a t=
+arget=3D"_blank" href=3D"https://itunes.apple.com/app/apple-store/id9254366=
+49" title=3D"App Store" style=3D"display: block;"><img border=3D"0" src=3D"=
+https://mercadolibre.com/org-img/mkt/email-mkt-assets/davinci/2x/ic_apple-g=
+ray@2x.png" alt=3D"App Store" width=3D"16" height=3D"20" style=3D"display: =
+block;"></a></td></tr></tbody></table></td></tr><tr><td align=3D"center" st=
+yle=3D"color: rgb(140, 140, 140); text-align: center; font-family: &quot;Pr=
+oxima Nova&quot;, _apple_system, &quot;Helvetica Neue&quot;, Helvetica, Rob=
+oto, Arial, sans-serif; font-size: 12px; font-weight: 400; line-height: 1.2=
+9; padding: 10px 0px 23px;">Segu=ED todos tus gastos y movimientos est=E9s =
+donde est=E9s.</td></tr></tbody></table></td></tr></tbody></table></td></tr=
+></tbody></table></td></tr></tbody></table></td></tr></tbody></table></div>=
+<img src=3D"https://u9647731.ct.sendgrid.net/wf/open?upn=3Du001.GKvkk7iaa-2=
+FKM32PW7RGRFbgcgZrd6Dazbc-2BuaWhTfmZpkYmUsjTjZQHvLu-2BjKGjokyt1R047-2B8tcaT=
+4oruaGingRAaj-2F-2Bi4YyNVWBCYUZV9bldNjQx6vk8YeoI9QWBxoM1sYKwWmgtovG-2FXdpUO=
+iiFrjQVTPp5JjZ0FXPv-2B39FQgR12NzNjn2ogOoGczjgoZ-2B125k84EQCPWlc4b2Ia7ECZd4-=
+2FGo3ItYzUYyC-2F2FiK8PXUpGSWpHK-2FgHUPXlkT-2FxX6-2FueMbrCp5QGbDxdcvdO84gdDs=
+x-2FyH627g2TPYSDLmic1XcymyxeRLlQ7-2F-2Bo-2FccfKwXUG19XkayScSTRXcnDtln3KWnE-=
+2F10CxnEmtDfdpkHi09RUXxzaDJ1-2BLOs2jaaKuX2Z3MabGxRL23TAJmlLraaCAxc8x-2FIyp6=
+3byh5un9A-2Fhzf2Mr8SRPOiSXR8lRUVWYFyhbAsbRe-2FRWynW8EkBZSXglurhoZDinYGxjYqp=
+eiJNYjIRoDymHEysmY81wcAMOfU-2BzoBavIN-2F9diNjIkd8kcETHayz4BOUryjyIvZxycOGzY=
+pqrdqHZZu-2BLbC-2FaJckmSLb52kDr4rVEnfOQyJbodbVLsbr1wl8QaZs9xlsaqftOqnP1-2Fg=
+BKIzBtNiM0qF11W5NtHxXjuG316SXVf2Yy7svW2AsXOTJuHgE6Nlel6xCGMCvO3c4flRdQhWoz0=
+sPs-2F-2BglQIArB9OGKs0DfdPOfEJgDqP5XOsUAxwqBkU-3D" alt=3D"" width=3D"1" hei=
+ght=3D"1" border=3D"0" style=3D"height:1px !important;width:1px !important;=
+border-width:0 !important;margin-top:0 !important;margin-bottom:0 !importan=
+t;margin-right:0 !important;margin-left:0 !important;padding-top:0 !importa=
+nt;padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !i=
+mportant;"/></body></html><table role=3D"presentation" cellspacing=3D"0" ce=
+llpadding=3D"0" border=3D"0" width=3D"100%" style=3D"width: 100%; max-width=
+: 520px; margin: 0px auto;"><tbody><tr><td valign=3D"middle" align=3D"left"=
+ style=3D"width: 100%; max-width: 520px; padding-top: 40px; padding-bottom:=
+ 40px;"><table role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" bo=
+rder=3D"0" width=3D"100%"><tbody><tr><td valign=3D"middle" align=3D"left"><=
+table role=3D"presentation" cellspacing=3D"0" cellpadding=3D"0" border=3D"0=
+" width=3D"100%"><tbody><tr><td><p style=3D"font-family: 'Proxima Nova', -a=
+pple-system, 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; font-w=
+eight: 400; font-size: 12px; color: rgba(0, 0, 0, 0.45); margin: 0px;">Te e=
+nviamos este e-mail a pajarinoyago@gmail.com.</p><p style=3D"font-family: '=
+Proxima Nova', -apple-system, 'Helvetica Neue', Helvetica, Roboto, Arial, s=
+ans-serif; font-weight: 400; font-size: 12px; color: rgba(0, 0, 0, 0.45); m=
+argin: 0px;"><a href=3D"https://www.mercadopago.com.ar/communication-prefer=
+ences" style=3D"font-family: 'Proxima Nova', -apple-system, 'Helvetica Neue=
+', Helvetica, Roboto, Arial, sans-serif; font-weight: 400; color: rgb(0, 15=
+8, 227); text-decoration: none;">Administrar preferencias de e-mails</a>.</=
+p><p style=3D"font-family: 'Proxima Nova', -apple-system, 'Helvetica Neue',=
+ Helvetica, Roboto, Arial, sans-serif; font-weight: 400; font-size: 12px; c=
+olor: rgba(0, 0, 0, 0.45); margin: 0px;">Nunca env=EDes tu clave o datos de=
+ tu cuenta por e-mail.</p><p style=3D"font-family: 'Proxima Nova', -apple-s=
+ystem, 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; font-weight:=
+ 400; font-size: 12px; color: rgba(0, 0, 0, 0.45); margin: 0px;">Conoc=E9 <=
+a href=3D"https://www.mercadopago.com.ar/privacidad" style=3D"font-family: =
+'Proxima Nova', -apple-system, 'Helvetica Neue', Helvetica, Roboto, Arial, =
+sans-serif; font-weight: 400; color: rgb(0, 158, 227); text-decoration: non=
+e;">c=F3mo cuidamos tu Privacidad</a> y visit=E1 los <a href=3D"https://www=
+.mercadopago.com.ar/ayuda/terminos-y-condiciones_299" style=3D"font-family:=
+ 'Proxima Nova', -apple-system, 'Helvetica Neue', Helvetica, Roboto, Arial,=
+ sans-serif; font-weight: 400; color: rgb(0, 158, 227); text-decoration: no=
+ne;">T=E9rminos y Condiciones de Mercado Pago</a>.</p></td></tr></tbody></t=
+able></td></tr></tbody></table></td></tr></tbody></table>

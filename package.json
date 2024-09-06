@@ -1,0 +1,12 @@
+{
+  "name": "zk-email-minimal",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Yago Pajariño <yagopajarino@outlook.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@zk-email/circuits": "^6.1.5",
+    "@zk-email/contracts": "^6.1.5",
+    "@zk-email/helpers": "^6.1.5"
+  }
+}
