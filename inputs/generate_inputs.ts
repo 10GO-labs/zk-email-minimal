@@ -37,7 +37,7 @@ export async function generateExampleVerifierCircuitInputs(
 
 import fs from "fs";
 (async () => {
-    const raw_email = fs.readFileSync("../emls/email-mp.eml");
+    const raw_email = fs.readFileSync("./emls/email-mp.eml");
     const data  = await generateExampleVerifierCircuitInputs(raw_email);
-    fs.writeFileSync("../inputs/inputs.json", JSON.stringify(data));
+    fs.writeFileSync("./inputs/inputs.json", JSON.stringify(data));
 }) ();
