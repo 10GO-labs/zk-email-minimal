@@ -7,11 +7,12 @@
   "dependencies": {
     "@zk-email/circuits": "^6.1.5",
     "@zk-email/contracts": "^6.1.5",
-    "@zk-email/helpers": "^6.1.5"
+    "@zk-email/helpers": "^6.1.5",
+    "snarkjs": "^0.7.4"
   },
   "scripts": {
     "compile": "circom -l ./node_modules/ circuits/circuit.circom -o --r1cs --wasm --sym --O0",
     "inputs": "npx ts-node inputs/generate_inputs.ts",
-    "witness": "node generate_witness.js circuit.wasm ../inputs/inputs.json witness.wtns"
+    "witness": "cd circuit_js && node generate_witness.js circuit.wasm ../inputs/inputs.json witness.wtns"
   }
 }

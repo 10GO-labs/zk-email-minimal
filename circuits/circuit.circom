@@ -1,9 +1,8 @@
 pragma circom 2.1.6;
 include "@zk-email/circuits/email-verifier.circom";
 include "@zk-email/circuits/utils/regex.circom";
-// regex-sdk currently does not support directly generating the regex for to and from address
-include "@zk-email/zk-regex-circom/circuits/common/from_addr_regex.circom";
-include "@zk-email/zk-regex-circom/circuits/common/to_addr_regex.circom";
+include "@zk-email/circuits/utils/array.circom";
+include "circomlib/circuits/comparators.circom";
 
 include "./regex/nro-cuenta.circom";
 
@@ -21,30 +20,41 @@ template MercadoPagoTransferencia(maxHeaderLength, maxBodyLength, n, k, packSize
     signal input decodedEmailBodyIn[maxBodyLength];
 
     // DKIM Verification
-    component EV = EmailVerifier(maxHeaderLength, maxBodyLength, n, k, 0, 1, 0);
+    component EV = EmailVerifier(maxHeaderLength, maxBodyLength, n, k, 1, 1, 0);
     EV.emailHeader <== emailHeader;
     EV.emailHeaderLength <== emailHeaderLength;
     EV.pubkey <== pubkey;
     EV.signature <== signature;
-    EV.bodyHashIndex <== bodyHashIndex;
-    EV.precomputedSHA <== precomputedSHA;
-    EV.emailBody <== emailBody;
-    EV.emailBodyLength <== emailBodyLength;
-    EV.decodedEmailBodyIn <== decodedEmailBodyIn;
+    // EV.bodyHashIndex <== bodyHashIndex;
+    // EV.precomputedSHA <== precomputedSHA;
+    // EV.emailBody <== emailBody;
+    // EV.emailBodyLength <== emailBodyLength;
+    // EV.decodedEmailBodyIn <== decodedEmailBodyIn;
     
     // CBU/CVU extraction
     signal input userRegexIdx;
     var userMaxLength = 22;
     signal userRegexOut, userRegexReveal[maxBodyLength];
 
-    (userRegexOut, userRegexReveal) <== ToAddrRegex(maxBodyLength)(decodedEmailBodyIn);
+    (userRegexOut, userRegexReveal) <== RegexNroCuenta(maxBodyLength)(decodedEmailBodyIn);
 
     userRegexOut === 1;
+    signal input CBU[22];
+    
+    component sub = SelectSubArray(maxBodyLength, userMaxLength);
+    sub.in <== userRegexReveal;
+    sub.startIndex <== userRegexIdx;
+    sub.length <== 22;
 
-    signal output userPackedOut[computeIntChunkLength(userMaxLength)];
-    userPackedOut <== PackRegexReveal(maxBodyLength, userMaxLength)(userRegexReveal, userRegexIdx);
-
+    component check[22];
+    for (var i = 0; i < 22; i++) {
+        check[i] = IsEqual();
+        check[i].in[0] <== sub.out[i];
+        check[i].in[1] <== CBU[i];
+        check[i].out === 1;
+    }
+    
 }
 
 
-component main = MercadoPagoTransferencia(512, 7040, 121, 17, 7);
+component main = MercadoPagoTransferencia(576, 7040, 121, 17, 7);
